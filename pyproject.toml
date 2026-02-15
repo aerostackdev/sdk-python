@@ -1,7 +1,7 @@
 
 [project]
 name = "aerostack"
-version = "0.1.1"
+version = "0.1.2"
 description = "Aerostack API Client SDK for Python"
 authors = [{ name = "Speakeasy" },]
 readme = "README.md"
