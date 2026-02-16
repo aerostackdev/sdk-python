@@ -8,11 +8,11 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.ai.ai_chat(request={
-        "messages": [
-            {},
+    res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
+        "params": [
+            True,
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     })
 
     # Handle response
@@ -34,11 +34,11 @@ async def main():
         api_key_auth="<YOUR_API_KEY_HERE>",
     ) as sdk:
 
-        res = await sdk.ai.ai_chat_async(request={
-            "messages": [
-                {},
+        res = await sdk.database.db_query_async(request={
+            "sql": "SELECT * FROM users WHERE active = ?",
+            "params": [
+                True,
             ],
-            "model": "@cf/meta/llama-3-8b-instruct",
         })
 
         # Handle response

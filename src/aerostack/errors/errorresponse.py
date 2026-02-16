@@ -26,6 +26,8 @@ class ErrorResponseData(BaseModel):
 
 @dataclass(unsafe_hash=True)
 class ErrorResponse(SDKBaseError):
+    r"""Invalid request"""
+
     data: ErrorResponseData = field(hash=False)
 
     def __init__(

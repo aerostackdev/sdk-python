@@ -10,8 +10,8 @@ from typing_extensions import NotRequired, TypedDict
 class AuthSignupRequestBodyTypedDict(TypedDict):
     email: str
     password: str
-    metadata: NotRequired[Dict[str, Any]]
     name: NotRequired[str]
+    metadata: NotRequired[Dict[str, Any]]
 
 
 class AuthSignupRequestBody(BaseModel):
@@ -19,13 +19,13 @@ class AuthSignupRequestBody(BaseModel):
 
     password: str
 
-    metadata: Optional[Dict[str, Any]] = None
-
     name: Optional[str] = None
+
+    metadata: Optional[Dict[str, Any]] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["metadata", "name"])
+        optional_fields = set(["name", "metadata"])
         serialized = handler(self)
         m = {}
 

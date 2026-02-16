@@ -67,8 +67,8 @@ with SDK(
 
     res = sdk.cache.cache_set(request={
         "key": "<key>",
-        "ttl": 3600,
         "value": "<value>",
+        "ttl": 3600,
     })
 
     # Handle response

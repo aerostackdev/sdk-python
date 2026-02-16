@@ -30,14 +30,47 @@ if TYPE_CHECKING:
         CacheSetResponseBody,
         CacheSetResponseBodyTypedDict,
     )
+    from .configureop import (
+        ConfigureRequestBody,
+        ConfigureRequestBodyTypedDict,
+        ConfigureResponseBody,
+        ConfigureResponseBodyTypedDict,
+        EmbeddingModel,
+    )
     from .dbqueryop import DbQueryRequestBody, DbQueryRequestBodyTypedDict
     from .dbqueryresult import DbQueryResult, DbQueryResultTypedDict
+    from .deletebytypeop import (
+        DeleteByTypeRequestBody,
+        DeleteByTypeRequestBodyTypedDict,
+        DeleteByTypeResponseBody,
+        DeleteByTypeResponseBodyTypedDict,
+    )
+    from .deleteop import (
+        DeleteRequestBody,
+        DeleteRequestBodyTypedDict,
+        DeleteResponseBody,
+        DeleteResponseBodyTypedDict,
+    )
+    from .ingestop import (
+        IngestRequestBody,
+        IngestRequestBodyTypedDict,
+        IngestResponseBody,
+        IngestResponseBodyTypedDict,
+    )
+    from .listtypesop import ListTypesResponseBody, ListTypesResponseBodyTypedDict
+    from .queryop import (
+        QueryRequestBody,
+        QueryRequestBodyTypedDict,
+        QueryResponseBody,
+        QueryResponseBodyTypedDict,
+    )
     from .queueenqueueop import (
         QueueEnqueueRequestBody,
         QueueEnqueueRequestBodyTypedDict,
         QueueEnqueueResponseBody,
         QueueEnqueueResponseBodyTypedDict,
     )
+    from .searchresult import SearchResult, SearchResultTypedDict
     from .security import Security, SecurityTypedDict
     from .servicesinvokeop import (
         ServicesInvokeRequestBody,
@@ -53,6 +86,7 @@ if TYPE_CHECKING:
         StorageUploadResponseBody,
         StorageUploadResponseBodyTypedDict,
     )
+    from .typestats import TypeStats, TypeStatsTypedDict
     from .user import User, UserTypedDict
 
 __all__ = [
@@ -74,19 +108,44 @@ __all__ = [
     "CacheSetRequestBodyTypedDict",
     "CacheSetResponseBody",
     "CacheSetResponseBodyTypedDict",
+    "ConfigureRequestBody",
+    "ConfigureRequestBodyTypedDict",
+    "ConfigureResponseBody",
+    "ConfigureResponseBodyTypedDict",
     "DbQueryRequestBody",
     "DbQueryRequestBodyTypedDict",
     "DbQueryResult",
     "DbQueryResultTypedDict",
+    "DeleteByTypeRequestBody",
+    "DeleteByTypeRequestBodyTypedDict",
+    "DeleteByTypeResponseBody",
+    "DeleteByTypeResponseBodyTypedDict",
+    "DeleteRequestBody",
+    "DeleteRequestBodyTypedDict",
+    "DeleteResponseBody",
+    "DeleteResponseBodyTypedDict",
+    "EmbeddingModel",
     "File",
     "FileTypedDict",
+    "IngestRequestBody",
+    "IngestRequestBodyTypedDict",
+    "IngestResponseBody",
+    "IngestResponseBodyTypedDict",
+    "ListTypesResponseBody",
+    "ListTypesResponseBodyTypedDict",
     "Messages",
     "MessagesTypedDict",
+    "QueryRequestBody",
+    "QueryRequestBodyTypedDict",
+    "QueryResponseBody",
+    "QueryResponseBodyTypedDict",
     "QueueEnqueueRequestBody",
     "QueueEnqueueRequestBodyTypedDict",
     "QueueEnqueueResponseBody",
     "QueueEnqueueResponseBodyTypedDict",
     "Role",
+    "SearchResult",
+    "SearchResultTypedDict",
     "Security",
     "SecurityTypedDict",
     "ServicesInvokeRequestBody",
@@ -97,6 +156,8 @@ __all__ = [
     "StorageUploadRequestBodyTypedDict",
     "StorageUploadResponseBody",
     "StorageUploadResponseBodyTypedDict",
+    "TypeStats",
+    "TypeStatsTypedDict",
     "User",
     "UserTypedDict",
 ]
@@ -123,14 +184,39 @@ _dynamic_imports: dict[str, str] = {
     "CacheSetRequestBodyTypedDict": ".cachesetop",
     "CacheSetResponseBody": ".cachesetop",
     "CacheSetResponseBodyTypedDict": ".cachesetop",
+    "ConfigureRequestBody": ".configureop",
+    "ConfigureRequestBodyTypedDict": ".configureop",
+    "ConfigureResponseBody": ".configureop",
+    "ConfigureResponseBodyTypedDict": ".configureop",
+    "EmbeddingModel": ".configureop",
     "DbQueryRequestBody": ".dbqueryop",
     "DbQueryRequestBodyTypedDict": ".dbqueryop",
     "DbQueryResult": ".dbqueryresult",
     "DbQueryResultTypedDict": ".dbqueryresult",
+    "DeleteByTypeRequestBody": ".deletebytypeop",
+    "DeleteByTypeRequestBodyTypedDict": ".deletebytypeop",
+    "DeleteByTypeResponseBody": ".deletebytypeop",
+    "DeleteByTypeResponseBodyTypedDict": ".deletebytypeop",
+    "DeleteRequestBody": ".deleteop",
+    "DeleteRequestBodyTypedDict": ".deleteop",
+    "DeleteResponseBody": ".deleteop",
+    "DeleteResponseBodyTypedDict": ".deleteop",
+    "IngestRequestBody": ".ingestop",
+    "IngestRequestBodyTypedDict": ".ingestop",
+    "IngestResponseBody": ".ingestop",
+    "IngestResponseBodyTypedDict": ".ingestop",
+    "ListTypesResponseBody": ".listtypesop",
+    "ListTypesResponseBodyTypedDict": ".listtypesop",
+    "QueryRequestBody": ".queryop",
+    "QueryRequestBodyTypedDict": ".queryop",
+    "QueryResponseBody": ".queryop",
+    "QueryResponseBodyTypedDict": ".queryop",
     "QueueEnqueueRequestBody": ".queueenqueueop",
     "QueueEnqueueRequestBodyTypedDict": ".queueenqueueop",
     "QueueEnqueueResponseBody": ".queueenqueueop",
     "QueueEnqueueResponseBodyTypedDict": ".queueenqueueop",
+    "SearchResult": ".searchresult",
+    "SearchResultTypedDict": ".searchresult",
     "Security": ".security",
     "SecurityTypedDict": ".security",
     "ServicesInvokeRequestBody": ".servicesinvokeop",
@@ -143,6 +229,8 @@ _dynamic_imports: dict[str, str] = {
     "StorageUploadRequestBodyTypedDict": ".storageuploadop",
     "StorageUploadResponseBody": ".storageuploadop",
     "StorageUploadResponseBodyTypedDict": ".storageuploadop",
+    "TypeStats": ".typestats",
+    "TypeStatsTypedDict": ".typestats",
     "User": ".user",
     "UserTypedDict": ".user",
 }

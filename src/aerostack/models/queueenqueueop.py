@@ -9,16 +9,16 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class QueueEnqueueRequestBodyTypedDict(TypedDict):
-    data: Dict[str, Any]
     type: str
+    data: Dict[str, Any]
     delay: NotRequired[int]
     r"""Delay in seconds before processing"""
 
 
 class QueueEnqueueRequestBody(BaseModel):
-    data: Dict[str, Any]
-
     type: str
+
+    data: Dict[str, Any]
 
     delay: Optional[int] = None
     r"""Delay in seconds before processing"""

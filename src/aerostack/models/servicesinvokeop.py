@@ -9,33 +9,33 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class ServicesInvokeRequestBodyTypedDict(TypedDict):
-    data: Dict[str, Any]
     service_name: str
+    data: Dict[str, Any]
 
 
 class ServicesInvokeRequestBody(BaseModel):
-    data: Dict[str, Any]
-
     service_name: Annotated[str, pydantic.Field(alias="serviceName")]
+
+    data: Dict[str, Any]
 
 
 class ServicesInvokeResponseBodyTypedDict(TypedDict):
     r"""Service invoked successfully"""
 
-    result: NotRequired[Any]
     success: NotRequired[bool]
+    result: NotRequired[Any]
 
 
 class ServicesInvokeResponseBody(BaseModel):
     r"""Service invoked successfully"""
 
-    result: Optional[Any] = None
-
     success: Optional[bool] = None
+
+    result: Optional[Any] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["result", "success"])
+        optional_fields = set(["success", "result"])
         serialized = handler(self)
         m = {}
 

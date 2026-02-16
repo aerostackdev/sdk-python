@@ -8,18 +8,18 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class DbQueryResultTypedDict(TypedDict):
-    count: NotRequired[int]
     results: NotRequired[List[Dict[str, Any]]]
+    count: NotRequired[int]
 
 
 class DbQueryResult(BaseModel):
-    count: Optional[int] = None
-
     results: Optional[List[Dict[str, Any]]] = None
+
+    count: Optional[int] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["count", "results"])
+        optional_fields = set(["results", "count"])
         serialized = handler(self)
         m = {}
 

@@ -24,10 +24,10 @@ with SDK(
 ) as sdk:
 
     res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-        "sql": "SELECT * FROM users WHERE active = ?",
     })
 
     # Handle response

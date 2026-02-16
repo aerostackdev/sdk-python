@@ -10,27 +10,27 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class UserTypedDict(TypedDict):
-    created_at: NotRequired[datetime]
-    email: NotRequired[str]
     id: NotRequired[str]
-    metadata: NotRequired[Dict[str, Any]]
+    email: NotRequired[str]
     name: NotRequired[Nullable[str]]
+    created_at: NotRequired[datetime]
+    metadata: NotRequired[Dict[str, Any]]
 
 
 class User(BaseModel):
-    created_at: Annotated[Optional[datetime], pydantic.Field(alias="createdAt")] = None
+    id: Optional[str] = None
 
     email: Optional[str] = None
 
-    id: Optional[str] = None
+    name: OptionalNullable[str] = UNSET
+
+    created_at: Annotated[Optional[datetime], pydantic.Field(alias="createdAt")] = None
 
     metadata: Optional[Dict[str, Any]] = None
 
-    name: OptionalNullable[str] = UNSET
-
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["createdAt", "email", "id", "metadata", "name"])
+        optional_fields = set(["id", "email", "name", "createdAt", "metadata"])
         nullable_fields = set(["name"])
         serialized = handler(self)
         m = {}

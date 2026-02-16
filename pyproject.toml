@@ -1,11 +1,11 @@
 
 [project]
 name = "aerostack"
-version = "0.2.0"
+version = "0.3.1"
 description = "Aerostack API Client SDK for Python"
 authors = [{ name = "Speakeasy" },]
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "httpcore >=1.0.9",
     "httpx >=0.28.1",

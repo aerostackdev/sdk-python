@@ -18,20 +18,20 @@ class CacheGetRequestBody(BaseModel):
 class CacheGetResponseBodyTypedDict(TypedDict):
     r"""Cache value retrieved"""
 
-    exists: NotRequired[bool]
     value: NotRequired[Nullable[Any]]
+    exists: NotRequired[bool]
 
 
 class CacheGetResponseBody(BaseModel):
     r"""Cache value retrieved"""
 
-    exists: Optional[bool] = None
-
     value: OptionalNullable[Any] = UNSET
+
+    exists: Optional[bool] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["exists", "value"])
+        optional_fields = set(["value", "exists"])
         nullable_fields = set(["value"])
         serialized = handler(self)
         m = {}

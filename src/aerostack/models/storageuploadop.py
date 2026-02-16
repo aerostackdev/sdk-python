@@ -11,20 +11,20 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class FileTypedDict(TypedDict):
-    content: Union[bytes, IO[bytes], io.BufferedReader]
     file_name: str
+    content: Union[bytes, IO[bytes], io.BufferedReader]
     content_type: NotRequired[str]
 
 
 class File(BaseModel):
+    file_name: Annotated[
+        str, pydantic.Field(alias="fileName"), FieldMetadata(multipart=True)
+    ]
+
     content: Annotated[
         Union[bytes, IO[bytes], io.BufferedReader],
         pydantic.Field(alias=""),
         FieldMetadata(multipart=MultipartFormMetadata(content=True)),
-    ]
-
-    file_name: Annotated[
-        str, pydantic.Field(alias="fileName"), FieldMetadata(multipart=True)
     ]
 
     content_type: Annotated[

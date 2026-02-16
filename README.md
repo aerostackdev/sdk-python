@@ -42,6 +42,7 @@ caching, queues, storage, and AI services.
 > [!TIP]
 > To finish publishing your SDK to PyPI you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
 
+
 > [!NOTE]
 > **Python version upgrade policy**
 >
@@ -124,15 +125,16 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 # Synchronous Example
 from aerostack import SDK
 
+
 with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.ai.ai_chat(request={
-        "messages": [
-            {},
+    res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
+        "params": [
+            True,
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     })
 
     # Handle response
@@ -154,11 +156,11 @@ async def main():
         api_key_auth="<YOUR_API_KEY_HERE>",
     ) as sdk:
 
-        res = await sdk.ai.ai_chat_async(request={
-            "messages": [
-                {},
+        res = await sdk.database.db_query_async(request={
+            "sql": "SELECT * FROM users WHERE active = ?",
+            "params": [
+                True,
             ],
-            "model": "@cf/meta/llama-3-8b-instruct",
         })
 
         # Handle response
@@ -183,15 +185,16 @@ To authenticate with the API the `api_key_auth` parameter must be set when initi
 ```python
 from aerostack import SDK
 
+
 with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.ai.ai_chat(request={
-        "messages": [
-            {},
+    res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
+        "params": [
+            True,
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     })
 
     # Handle response
@@ -210,10 +213,19 @@ with SDK(
 
 * [ai_chat](docs/sdks/ai/README.md#ai_chat) - Generate AI chat completion
 
+### [Ai.Search](docs/sdks/search/README.md)
+
+* [ingest](docs/sdks/search/README.md#ingest) - Ingest content into managed search index
+* [query](docs/sdks/search/README.md#query) - Search managed index
+* [delete](docs/sdks/search/README.md#delete) - Delete item by ID
+* [delete_by_type](docs/sdks/search/README.md#delete_by_type) - Delete all items of a type
+* [list_types](docs/sdks/search/README.md#list_types) - List distinct types and counts
+* [configure](docs/sdks/search/README.md#configure) - Update search configuration
+
 ### [Authentication](docs/sdks/authentication/README.md)
 
-* [auth_signin](docs/sdks/authentication/README.md#auth_signin) - Sign in user
 * [auth_signup](docs/sdks/authentication/README.md#auth_signup) - Sign up new user
+* [auth_signin](docs/sdks/authentication/README.md#auth_signin) - Sign in user
 
 ### [Cache](docs/sdks/cache/README.md)
 
@@ -252,17 +264,18 @@ Certain SDK methods accept file objects as part of a request body or multi-part 
 ```python
 from aerostack import SDK
 
+
 with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
     res = sdk.storage.storage_upload(request={
-        "content_type": "image/jpeg",
         "file": {
-            "content": open("example.file", "rb"),
             "file_name": "example.file",
+            "content": open("example.file", "rb"),
         },
         "key": "avatars/user-123.jpg",
+        "content_type": "image/jpeg",
     })
 
     # Handle response
@@ -281,15 +294,16 @@ To change the default retry strategy for a single API call, simply provide a `Re
 from aerostack import SDK
 from aerostack.utils import BackoffStrategy, RetryConfig
 
+
 with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.ai.ai_chat(request={
-        "messages": [
-            {},
+    res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
+        "params": [
+            True,
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     },
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
@@ -303,16 +317,17 @@ If you'd like to override the default retry strategy for all operations that sup
 from aerostack import SDK
 from aerostack.utils import BackoffStrategy, RetryConfig
 
+
 with SDK(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.ai.ai_chat(request={
-        "messages": [
-            {},
+    res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
+        "params": [
+            True,
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     })
 
     # Handle response
@@ -339,19 +354,23 @@ with SDK(
 ```python
 from aerostack import SDK, errors
 
+
 with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
     res = None
     try:
 
-        res = sdk.authentication.auth_signin(request={
-            "email": "Tina.Buckridge@yahoo.com",
-            "password": "nIQ75VVtUTq8bO4",
+        res = sdk.database.db_query(request={
+            "sql": "SELECT * FROM users WHERE active = ?",
+            "params": [
+                True,
+            ],
         })
 
         # Handle response
         print(res)
+
 
     except errors.SDKBaseError as e:
         # The base class for HTTP error responses
@@ -364,8 +383,8 @@ with SDK(
         # Depending on the method different errors may be thrown
         if isinstance(e, errors.ErrorResponse):
             print(e.data.code)  # errors.Code
-            print(e.data.details)  # Optional[Dict[str, Any]]
             print(e.data.message)  # str
+            print(e.data.details)  # Optional[Dict[str, Any]]
 ```
 
 ### Error Classes
@@ -381,8 +400,9 @@ with SDK(
     * [`httpx.ConnectError`](https://www.python-httpx.org/exceptions/#httpx.ConnectError): HTTP client was unable to make a request to a server.
     * [`httpx.TimeoutException`](https://www.python-httpx.org/exceptions/#httpx.TimeoutException): HTTP request timed out.
 
+
 **Inherit from [`SDKBaseError`](./src/aerostack/errors/sdkbaseerror.py)**:
-* [`ErrorResponse`](./src/aerostack/errors/errorresponse.py): Applicable to 3 of 9 methods.*
+* [`ErrorResponse`](./src/aerostack/errors/errorresponse.py): Invalid request. Applicable to 3 of 15 methods.*
 * [`ResponseValidationError`](./src/aerostack/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
@@ -407,16 +427,17 @@ You can override the default server globally by passing a server index to the `s
 ```python
 from aerostack import SDK
 
+
 with SDK(
     server_idx=0,
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.ai.ai_chat(request={
-        "messages": [
-            {},
+    res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
+        "params": [
+            True,
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     })
 
     # Handle response
@@ -430,16 +451,17 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```python
 from aerostack import SDK
 
+
 with SDK(
     server_url="http://localhost:8787/v1",
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.ai.ai_chat(request={
-        "messages": [
-            {},
+    res = sdk.database.db_query(request={
+        "sql": "SELECT * FROM users WHERE active = ?",
+        "params": [
+            True,
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     })
 
     # Handle response
@@ -545,6 +567,7 @@ def main():
     ) as sdk:
         # Rest of application here...
 
+
 # Or when using async:
 async def amain():
 
@@ -583,3 +606,5 @@ looking for the latest version.
 While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
+
+<!-- Placeholder for Future Speakeasy SDK Sections -->

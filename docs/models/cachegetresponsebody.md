@@ -7,5 +7,5 @@ Cache value retrieved
 
 | Field                   | Type                    | Required                | Description             |
 | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-| `exists`                | *Optional[bool]*        | :heavy_minus_sign:      | N/A                     |
 | `value`                 | *OptionalNullable[Any]* | :heavy_minus_sign:      | N/A                     |
+| `exists`                | *Optional[bool]*        | :heavy_minus_sign:      | N/A                     |

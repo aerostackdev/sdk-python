@@ -11,23 +11,23 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class AuthResponseTypedDict(TypedDict):
-    expires_at: NotRequired[datetime]
     token: NotRequired[str]
     r"""JWT authentication token"""
     user: NotRequired[UserTypedDict]
+    expires_at: NotRequired[datetime]
 
 
 class AuthResponse(BaseModel):
-    expires_at: Annotated[Optional[datetime], pydantic.Field(alias="expiresAt")] = None
-
     token: Optional[str] = None
     r"""JWT authentication token"""
 
     user: Optional[User] = None
 
+    expires_at: Annotated[Optional[datetime], pydantic.Field(alias="expiresAt")] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["expiresAt", "token", "user"])
+        optional_fields = set(["token", "user", "expiresAt"])
         serialized = handler(self)
         m = {}
 

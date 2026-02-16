@@ -24,12 +24,12 @@ with SDK(
 ) as sdk:
 
     res = sdk.storage.storage_upload(request={
-        "content_type": "image/jpeg",
         "file": {
-            "content": open("example.file", "rb"),
             "file_name": "example.file",
+            "content": open("example.file", "rb"),
         },
         "key": "avatars/user-123.jpg",
+        "content_type": "image/jpeg",
     })
 
     # Handle response

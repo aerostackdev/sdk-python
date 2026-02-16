@@ -24,10 +24,10 @@ with SDK(
 ) as sdk:
 
     res = sdk.ai.ai_chat(request={
+        "model": "@cf/meta/llama-3-8b-instruct",
         "messages": [
             {},
         ],
-        "model": "@cf/meta/llama-3-8b-instruct",
     })
 
     # Handle response

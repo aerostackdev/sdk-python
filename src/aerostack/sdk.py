@@ -30,28 +30,28 @@ class SDK(BaseSDK):
 
     """
 
-    ai: "Ai"
-    r"""AI/ML operations"""
+    database: "Database"
+    r"""SQL database operations"""
     authentication: "Authentication"
     r"""User authentication and management"""
     cache: "Cache"
     r"""Key-value caching"""
-    database: "Database"
-    r"""SQL database operations"""
     queue: "Queue"
     r"""Background job queue"""
-    services: "Services"
-    r"""Cross-service invocation"""
     storage: "Storage"
     r"""File storage"""
+    ai: "Ai"
+    r"""AI/ML operations"""
+    services: "Services"
+    r"""Cross-service invocation"""
     _sub_sdk_map = {
-        "ai": ("aerostack.ai", "Ai"),
+        "database": ("aerostack.database", "Database"),
         "authentication": ("aerostack.authentication", "Authentication"),
         "cache": ("aerostack.cache", "Cache"),
-        "database": ("aerostack.database", "Database"),
         "queue": ("aerostack.queue", "Queue"),
-        "services": ("aerostack.services", "Services"),
         "storage": ("aerostack.storage", "Storage"),
+        "ai": ("aerostack.ai", "Ai"),
+        "services": ("aerostack.services", "Services"),
     }
 
     def __init__(
@@ -131,12 +131,7 @@ class SDK(BaseSDK):
         # pylint: disable=protected-access
         self.sdk_configuration.__dict__["_hooks"] = hooks
 
-        current_server_url, *_ = self.sdk_configuration.get_server_details()
-        server_url, self.sdk_configuration.client = hooks.sdk_init(
-            current_server_url, client
-        )
-        if current_server_url != server_url:
-            self.sdk_configuration.server_url = server_url
+        self.sdk_configuration = hooks.sdk_init(self.sdk_configuration)
 
         weakref.finalize(
             self,

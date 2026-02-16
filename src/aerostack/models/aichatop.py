@@ -15,18 +15,18 @@ class Role(str, Enum):
 
 
 class MessagesTypedDict(TypedDict):
-    content: NotRequired[str]
     role: NotRequired[Role]
+    content: NotRequired[str]
 
 
 class Messages(BaseModel):
-    content: Optional[str] = None
-
     role: Optional[Role] = None
+
+    content: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["content", "role"])
+        optional_fields = set(["role", "content"])
         serialized = handler(self)
         m = {}
 

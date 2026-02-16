@@ -24,11 +24,11 @@ with SDK(
 ) as sdk:
 
     res = sdk.queue.queue_enqueue(request={
+        "type": "send-email",
         "data": {
             "key": "<value>",
         },
         "delay": 60,
-        "type": "send-email",
     })
 
     # Handle response
