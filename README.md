@@ -593,6 +593,23 @@ s = SDK(debug_logger=logging.getLogger("aerostack"))
 ```
 <!-- End Debugging [debug] -->
 
+
+## Backend Service Integration
+
+> **SDK Type**: HTTP Client (API Calls)
+
+This Python SDK is an **HTTP client** for calling Aerostack APIs from Python backends:
+
+✅ **Use cases**:
+- Flask/FastAPI/Django apps calling Aerostack Auth/E-commerce
+- Python microservices integrating with Aerostack
+- Data pipelines and batch jobs using Aerostack services
+
+❌ **Not for**:
+- Direct Cloudflare binding access (use TypeScript `@aerostack/sdk` Server SDK in Workers)
+
+For Python backends, this SDK is all you need. If you need Worker bindings, deploy TypeScript Workers alongside your Python services.
+
 # Development
 
 ## Maturity
