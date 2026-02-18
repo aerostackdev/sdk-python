@@ -3,9 +3,9 @@
 from .basesdk import BaseSDK
 from aerostack import errors, models, utils
 from aerostack._hooks import HookContext
-from aerostack.types import BaseModel, OptionalNullable, UNSET
+from aerostack.types import OptionalNullable, UNSET
 from aerostack.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Mapping, Optional, Union, cast
+from typing import Any, Mapping, Optional, Union
 
 
 class Database(BaseSDK):
@@ -14,7 +14,11 @@ class Database(BaseSDK):
     def db_query(
         self,
         *,
-        request: Union[models.DbQueryRequestBody, models.DbQueryRequestBodyTypedDict],
+        request_body: Union[
+            models.DbQueryRequestBody, models.DbQueryRequestBodyTypedDict
+        ],
+        x_request_id: Optional[str] = None,
+        x_sdk_version: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -24,7 +28,9 @@ class Database(BaseSDK):
 
         Run a SQL query against your project database
 
-        :param request: The request object to send.
+        :param request_body:
+        :param x_request_id: Unique request tracing ID
+        :param x_sdk_version: SDK version string
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -40,9 +46,13 @@ class Database(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, models.DbQueryRequestBody)
-        request = cast(models.DbQueryRequestBody, request)
+        request = models.DbQueryRequest(
+            x_request_id=x_request_id,
+            x_sdk_version=x_sdk_version,
+            request_body=utils.get_pydantic_model(
+                request_body, models.DbQueryRequestBody
+            ),
+        )
 
         req = self._build_request(
             method="POST",
@@ -58,7 +68,7 @@ class Database(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.DbQueryRequestBody
+                request.request_body, False, False, "json", models.DbQueryRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -106,7 +116,11 @@ class Database(BaseSDK):
     async def db_query_async(
         self,
         *,
-        request: Union[models.DbQueryRequestBody, models.DbQueryRequestBodyTypedDict],
+        request_body: Union[
+            models.DbQueryRequestBody, models.DbQueryRequestBodyTypedDict
+        ],
+        x_request_id: Optional[str] = None,
+        x_sdk_version: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -116,7 +130,9 @@ class Database(BaseSDK):
 
         Run a SQL query against your project database
 
-        :param request: The request object to send.
+        :param request_body:
+        :param x_request_id: Unique request tracing ID
+        :param x_sdk_version: SDK version string
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -132,9 +148,13 @@ class Database(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, models.DbQueryRequestBody)
-        request = cast(models.DbQueryRequestBody, request)
+        request = models.DbQueryRequest(
+            x_request_id=x_request_id,
+            x_sdk_version=x_sdk_version,
+            request_body=utils.get_pydantic_model(
+                request_body, models.DbQueryRequestBody
+            ),
+        )
 
         req = self._build_request_async(
             method="POST",
@@ -150,7 +170,7 @@ class Database(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.DbQueryRequestBody
+                request.request_body, False, False, "json", models.DbQueryRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,

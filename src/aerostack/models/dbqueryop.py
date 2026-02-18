@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 from aerostack.types import BaseModel, UNSET_SENTINEL
+from aerostack.utils import FieldMetadata, HeaderMetadata, RequestMetadata
+import pydantic
 from pydantic import model_serializer
 from typing import Any, List, Optional
-from typing_extensions import NotRequired, TypedDict
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class DbQueryRequestBodyTypedDict(TypedDict):
@@ -24,6 +26,51 @@ class DbQueryRequestBody(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(["params"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+class DbQueryRequestTypedDict(TypedDict):
+    request_body: DbQueryRequestBodyTypedDict
+    x_request_id: NotRequired[str]
+    r"""Unique request tracing ID"""
+    x_sdk_version: NotRequired[str]
+    r"""SDK version string"""
+
+
+class DbQueryRequest(BaseModel):
+    request_body: Annotated[
+        DbQueryRequestBody,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
+
+    x_request_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="X-Request-ID"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""Unique request tracing ID"""
+
+    x_sdk_version: Annotated[
+        Optional[str],
+        pydantic.Field(alias="X-SDK-Version"),
+        FieldMetadata(header=HeaderMetadata(style="simple", explode=False)),
+    ] = None
+    r"""SDK version string"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["X-Request-ID", "X-SDK-Version"])
         serialized = handler(self)
         m = {}
 

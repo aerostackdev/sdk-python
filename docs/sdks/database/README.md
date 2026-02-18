@@ -23,12 +23,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    })
+    }, x_sdk_version="0.1.0")
 
     # Handle response
     print(res)
@@ -37,10 +37,12 @@ with SDK(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [models.DbQueryRequestBody](../../models/dbqueryrequestbody.md)     | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request_body`                                                      | [models.DbQueryRequestBody](../../models/dbqueryrequestbody.md)     | :heavy_check_mark:                                                  | N/A                                                                 |                                                                     |
+| `x_request_id`                                                      | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Unique request tracing ID                                           |                                                                     |
+| `x_sdk_version`                                                     | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | SDK version string                                                  | 0.1.0                                                               |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |                                                                     |
 
 ### Response
 

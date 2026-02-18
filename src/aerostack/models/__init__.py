@@ -37,7 +37,12 @@ if TYPE_CHECKING:
         ConfigureResponseBodyTypedDict,
         EmbeddingModel,
     )
-    from .dbqueryop import DbQueryRequestBody, DbQueryRequestBodyTypedDict
+    from .dbqueryop import (
+        DbQueryRequest,
+        DbQueryRequestBody,
+        DbQueryRequestBodyTypedDict,
+        DbQueryRequestTypedDict,
+    )
     from .dbqueryresult import DbQueryResult, DbQueryResultTypedDict
     from .deletebytypeop import (
         DeleteByTypeRequestBody,
@@ -112,8 +117,10 @@ __all__ = [
     "ConfigureRequestBodyTypedDict",
     "ConfigureResponseBody",
     "ConfigureResponseBodyTypedDict",
+    "DbQueryRequest",
     "DbQueryRequestBody",
     "DbQueryRequestBodyTypedDict",
+    "DbQueryRequestTypedDict",
     "DbQueryResult",
     "DbQueryResultTypedDict",
     "DeleteByTypeRequestBody",
@@ -189,8 +196,10 @@ _dynamic_imports: dict[str, str] = {
     "ConfigureResponseBody": ".configureop",
     "ConfigureResponseBodyTypedDict": ".configureop",
     "EmbeddingModel": ".configureop",
+    "DbQueryRequest": ".dbqueryop",
     "DbQueryRequestBody": ".dbqueryop",
     "DbQueryRequestBodyTypedDict": ".dbqueryop",
+    "DbQueryRequestTypedDict": ".dbqueryop",
     "DbQueryResult": ".dbqueryresult",
     "DbQueryResultTypedDict": ".dbqueryresult",
     "DeleteByTypeRequestBody": ".deletebytypeop",

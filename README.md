@@ -30,6 +30,7 @@ caching, queues, storage, and AI services.
   * [Custom HTTP Client](#custom-http-client)
   * [Resource Management](#resource-management)
   * [Debugging](#debugging)
+  * [Backend Service Integration](#backend-service-integration)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -55,7 +56,7 @@ The SDK can be installed with *uv*, *pip*, or *poetry* package managers.
 *uv* is a fast Python package installer and resolver, designed as a drop-in replacement for pip and pip-tools. It's recommended for its speed and modern Python tooling capabilities.
 
 ```bash
-uv add aerostack
+uv add git+<UNSET>.git
 ```
 
 ### PIP
@@ -63,7 +64,7 @@ uv add aerostack
 *PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
 
 ```bash
-pip install aerostack
+pip install git+<UNSET>.git
 ```
 
 ### Poetry
@@ -71,7 +72,7 @@ pip install aerostack
 *Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
 
 ```bash
-poetry add aerostack
+poetry add git+<UNSET>.git
 ```
 
 ### Shell and script usage with `uv`
@@ -130,12 +131,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    })
+    }, x_sdk_version="0.1.0")
 
     # Handle response
     print(res)
@@ -156,12 +157,12 @@ async def main():
         api_key_auth="<YOUR_API_KEY_HERE>",
     ) as sdk:
 
-        res = await sdk.database.db_query_async(request={
+        res = await sdk.database.db_query_async(request_body={
             "sql": "SELECT * FROM users WHERE active = ?",
             "params": [
                 True,
             ],
-        })
+        }, x_sdk_version="0.1.0")
 
         # Handle response
         print(res)
@@ -190,12 +191,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    })
+    }, x_sdk_version="0.1.0")
 
     # Handle response
     print(res)
@@ -299,12 +300,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    },
+    }, x_sdk_version="0.1.0",
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
     # Handle response
@@ -323,12 +324,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    })
+    }, x_sdk_version="0.1.0")
 
     # Handle response
     print(res)
@@ -361,12 +362,12 @@ with SDK(
     res = None
     try:
 
-        res = sdk.database.db_query(request={
+        res = sdk.database.db_query(request_body={
             "sql": "SELECT * FROM users WHERE active = ?",
             "params": [
                 True,
             ],
-        })
+        }, x_sdk_version="0.1.0")
 
         # Handle response
         print(res)
@@ -419,7 +420,7 @@ You can override the default server globally by passing a server index to the `s
 
 | #   | Server                        | Description       |
 | --- | ----------------------------- | ----------------- |
-| 0   | `https://api.aerostack.dev/v1` | Production        |
+| 0   | `https://api.aerostack.ai/v1` | Production        |
 | 1   | `http://localhost:8787/v1`    | Local Development |
 
 #### Example
@@ -433,12 +434,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    })
+    }, x_sdk_version="0.1.0")
 
     # Handle response
     print(res)
@@ -457,12 +458,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    })
+    }, x_sdk_version="0.1.0")
 
     # Handle response
     print(res)

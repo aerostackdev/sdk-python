@@ -8,12 +8,12 @@ with SDK(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as sdk:
 
-    res = sdk.database.db_query(request={
+    res = sdk.database.db_query(request_body={
         "sql": "SELECT * FROM users WHERE active = ?",
         "params": [
             True,
         ],
-    })
+    }, x_sdk_version="0.1.0")
 
     # Handle response
     print(res)
@@ -34,12 +34,12 @@ async def main():
         api_key_auth="<YOUR_API_KEY_HERE>",
     ) as sdk:
 
-        res = await sdk.database.db_query_async(request={
+        res = await sdk.database.db_query_async(request_body={
             "sql": "SELECT * FROM users WHERE active = ?",
             "params": [
                 True,
             ],
-        })
+        }, x_sdk_version="0.1.0")
 
         # Handle response
         print(res)
