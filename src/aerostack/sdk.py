@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from aerostack.authentication import Authentication
     from aerostack.cache import Cache
     from aerostack.database import Database
+    from aerostack.gateway import Gateway
     from aerostack.queue import Queue
     from aerostack.services import Services
     from aerostack.storage import Storage
@@ -44,6 +45,7 @@ class SDK(BaseSDK):
     r"""AI/ML operations"""
     services: "Services"
     r"""Cross-service invocation"""
+    gateway: "Gateway"
     _sub_sdk_map = {
         "database": ("aerostack.database", "Database"),
         "authentication": ("aerostack.authentication", "Authentication"),
@@ -52,6 +54,7 @@ class SDK(BaseSDK):
         "storage": ("aerostack.storage", "Storage"),
         "ai": ("aerostack.ai", "Ai"),
         "services": ("aerostack.services", "Services"),
+        "gateway": ("aerostack.gateway", "Gateway"),
     }
 
     def __init__(

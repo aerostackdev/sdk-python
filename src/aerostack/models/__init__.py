@@ -56,6 +56,12 @@ if TYPE_CHECKING:
         DeleteResponseBody,
         DeleteResponseBodyTypedDict,
     )
+    from .gatewaybillinglogop import (
+        GatewayBillingLogRequestBody,
+        GatewayBillingLogRequestBodyTypedDict,
+        GatewayBillingLogResponseBody,
+        GatewayBillingLogResponseBodyTypedDict,
+    )
     from .ingestop import (
         IngestRequestBody,
         IngestRequestBodyTypedDict,
@@ -134,6 +140,10 @@ __all__ = [
     "EmbeddingModel",
     "File",
     "FileTypedDict",
+    "GatewayBillingLogRequestBody",
+    "GatewayBillingLogRequestBodyTypedDict",
+    "GatewayBillingLogResponseBody",
+    "GatewayBillingLogResponseBodyTypedDict",
     "IngestRequestBody",
     "IngestRequestBodyTypedDict",
     "IngestResponseBody",
@@ -210,6 +220,10 @@ _dynamic_imports: dict[str, str] = {
     "DeleteRequestBodyTypedDict": ".deleteop",
     "DeleteResponseBody": ".deleteop",
     "DeleteResponseBodyTypedDict": ".deleteop",
+    "GatewayBillingLogRequestBody": ".gatewaybillinglogop",
+    "GatewayBillingLogRequestBodyTypedDict": ".gatewaybillinglogop",
+    "GatewayBillingLogResponseBody": ".gatewaybillinglogop",
+    "GatewayBillingLogResponseBodyTypedDict": ".gatewaybillinglogop",
     "IngestRequestBody": ".ingestop",
     "IngestRequestBodyTypedDict": ".ingestop",
     "IngestResponseBody": ".ingestop",

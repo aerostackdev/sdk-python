@@ -237,6 +237,10 @@ with SDK(
 
 * [db_query](docs/sdks/database/README.md#db_query) - Execute SQL query
 
+### [Gateway.Billing](docs/sdks/billing/README.md)
+
+* [gateway_billing_log](docs/sdks/billing/README.md#gateway_billing_log) - Log Gateway usage
+
 ### [Queue](docs/sdks/queue/README.md)
 
 * [queue_enqueue](docs/sdks/queue/README.md#queue_enqueue) - Add job to queue
@@ -403,7 +407,7 @@ with SDK(
 
 
 **Inherit from [`SDKBaseError`](./src/aerostack/errors/sdkbaseerror.py)**:
-* [`ErrorResponse`](./src/aerostack/errors/errorresponse.py): Invalid request. Applicable to 3 of 15 methods.*
+* [`ErrorResponse`](./src/aerostack/errors/errorresponse.py): Invalid request. Applicable to 4 of 16 methods.*
 * [`ResponseValidationError`](./src/aerostack/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
