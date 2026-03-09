@@ -87,7 +87,7 @@ conf = aerostack.Configuration(
                  ) -> None:
         """Constructor
         """
-        self._base_path = "https://api.aerocall.ai/v1" if host is None else host
+        self._base_path = "https://api.aerostack.dev/v1" if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -421,7 +421,7 @@ conf = aerostack.Configuration(
         """
         return [
             {
-                'url': "https://api.aerocall.ai/v1",
+                'url': "https://api.aerostack.dev/v1",
                 'description': "Production",
             },
             {

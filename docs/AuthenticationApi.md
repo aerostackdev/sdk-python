@@ -1,6 +1,6 @@
 # aerostack.AuthenticationApi
 
-All URIs are relative to *https://api.aerocall.ai/v1*
+All URIs are relative to *https://api.aerostack.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,10 +26,10 @@ from aerostack.models.auth_signin_request import AuthSigninRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -107,10 +107,10 @@ from aerostack.models.auth_signup_request import AuthSignupRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters

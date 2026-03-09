@@ -237,7 +237,7 @@ class Realtime:
 
     def _get_http_base(self) -> str:
         """Derive the HTTP base URL (without ``/v1``) from the host."""
-        host = self.configuration.host or "https://api.aerocall.ai/v1"
+        host = self.configuration.host or "https://api.aerostack.dev/v1"
         return re.sub(r'/v1/?$', '', host)
 
     async def connect(self):
@@ -251,7 +251,7 @@ class Realtime:
         except ImportError:
             raise ImportError("websockets package required. Install with: pip install websockets")
 
-        host = self.configuration.host or "https://api.aerocall.ai/v1"
+        host = self.configuration.host or "https://api.aerostack.dev/v1"
         ws_base = re.sub(r'/v1/?$', '', host)
         ws_base = ws_base.replace('https://', 'wss://').replace('http://', 'ws://')
         

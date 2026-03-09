@@ -1,6 +1,6 @@
 # aerostack.AIApi
 
-All URIs are relative to *https://api.aerocall.ai/v1*
+All URIs are relative to *https://api.aerostack.dev/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,10 +31,10 @@ from aerostack.models.ai_chat_request import AiChatRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -111,10 +111,10 @@ from aerostack.models.configure_request import ConfigureRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -191,10 +191,10 @@ from aerostack.models.delete_request import DeleteRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -271,10 +271,10 @@ from aerostack.models.delete_by_type_request import DeleteByTypeRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -351,10 +351,10 @@ from aerostack.models.ingest_request import IngestRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -430,10 +430,10 @@ from aerostack.models.list_types200_response import ListTypes200Response
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -506,10 +506,10 @@ from aerostack.models.query_request import QueryRequest
 from aerostack.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://api.aerocall.ai/v1
+# Defining the host is optional and defaults to https://api.aerostack.dev/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = aerostack.Configuration(
-    host = "https://api.aerocall.ai/v1"
+    host = "https://api.aerostack.dev/v1"
 )
 
 # The client must configure the authentication and authorization parameters

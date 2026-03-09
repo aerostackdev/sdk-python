@@ -49,7 +49,7 @@ class SDK:
     def __init__(self, 
                  api_key: Optional[str] = None, 
                  api_key_auth: Optional[str] = None,
-                 server_url: str = "https://api.aerocall.ai/v1",
+                 server_url: str = "https://api.aerostack.dev/v1",
                  max_reconnect_attempts: Optional[int] = None):
         
         key = api_key or api_key_auth
