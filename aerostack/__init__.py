@@ -16,6 +16,9 @@
 
 __version__ = "1.0.0"
 
+# Main SDK facade — re-export for ergonomic top-level import: `from aerostack import SDK`
+from aerostack.sdk import SDK, Aerostack  # noqa: F401
+
 # import apis into sdk package
 from aerostack.api.ai_api import AIApi
 from aerostack.api.authentication_api import AuthenticationApi
