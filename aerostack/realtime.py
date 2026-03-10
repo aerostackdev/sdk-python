@@ -62,6 +62,7 @@ class RealtimeSubscription:
         })
         self.is_subscribed = False
         self._event_callbacks.clear()
+        self.client._remove_subscription(self.topic)
 
     async def publish(
         self,
@@ -257,9 +258,19 @@ class Realtime:
         
         api_key = self._get_api_key()
 
-        ws_url = f"{ws_base}/api/realtime?apiKey={api_key}"
+        # SECURITY: Pass API key via Sec-WebSocket-Protocol header — never as URL query param
+        # (URL params appear in server logs, CDN logs, and Referer headers).
+        ws_url = f"{ws_base}/api/realtime"
+        extra_headers: Dict[str, str] = {}
+        subprotocols: List[str] = []
+        if api_key:
+            subprotocols = [f"aerostack-key.{api_key}", "aerostack-v1"]
 
-        self.ws = await websockets.connect(ws_url)
+        self.ws = await websockets.connect(
+            ws_url,
+            additional_headers=extra_headers,
+            subprotocols=subprotocols if subprotocols else None,
+        )
         self.is_connected = True
         self._reconnect_attempts = 0
         self._last_pong = time.time()
@@ -298,6 +309,10 @@ class Realtime:
 
     def send_chat(self, room_id: str, text: str):
         asyncio.create_task(self._send({"type": "chat", "roomId": room_id, "text": text}))
+
+    def _remove_subscription(self, topic: str):
+        """Remove a subscription from the internal map (called on unsubscribe)."""
+        self.subscriptions.pop(topic, None)
 
     async def _send(self, data: Dict[str, Any]):
         if self.ws and self.is_connected:
