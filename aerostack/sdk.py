@@ -10,7 +10,7 @@ from aerostack.api.ai_api import AIApi
 from aerostack.api.services_api import ServicesApi
 from aerostack.api.gateway_api import GatewayApi
 from aerostack.models.db_query_request import DbQueryRequest
-from aerostack.realtime import RealtimeClient
+from aerostack.realtime import Realtime
 
 class DatabaseFacade:
     def __init__(self, api: DatabaseApi):
@@ -70,11 +70,10 @@ class SDK:
         self.services = ServicesApi(self.api_client)
         self.gateway = GatewayApi(self.api_client)
         
-        # Realtime
-        self.realtime = RealtimeClient(
-            server_url=server_url,
-            api_key=key,
-            max_reconnect_attempts=max_reconnect_attempts
+        # Realtime — Realtime class takes configuration + max_reconnect_attempts
+        self.realtime = Realtime(
+            configuration=self.configuration,
+            max_reconnect_attempts=max_reconnect_attempts or 0,
         )
 
     def set_api_key(self, api_key: str):
