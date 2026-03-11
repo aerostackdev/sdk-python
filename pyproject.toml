@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aerostack"
-version = "0.8.4"
+version = "0.8.7"
 description = "Aerostack API"
 authors = ["Aerostack Support <team@openapitools.org>"]
 license = "NoLicense"
